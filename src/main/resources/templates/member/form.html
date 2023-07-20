@@ -1,0 +1,60 @@
+<html xmlns:th="http://www.thymeleaf.org"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+   layout:decorate="~{layout/base}">
+   <div layout:fragment="content" class="container my-3">
+      <div class="row mb-3">
+      	<div class="col-12">
+      		<h1>회원가입 폼</h1>
+      	</div>
+      </div>
+      <div class="row mb-3">
+      		<div class="col-12">
+      			<form class="border bg-light p-3" method="post" 
+      				  th:action="@{/member/register}" th:object="${registerMemberForm}">
+      				  <div class="form-group mb-3">
+      				  	<label>아이디</label>
+      				  	<input type="text" class="form-control" th:field="*{id}"
+      				  		   th:classappend="${#fields.hasErrors('id') ? 'is-invalid' : ''}" />  
+      				 	<!-- f12로 소스를 보면 이렇게 표시된다.
+      				 	<input type="text" class="form-control" id="id" name="id" value=""/>  
+      				 	 -->
+      				 	<!-- 오류메세지 표시할 부분 -->
+      				 	<div th:if="${#fields.hasErrors('id')}" th:errors="*{id}" 
+      				 		 class="invalid-feedback"></div>
+      				  </div>
+      				  <div class="form-group mb-3">
+      				  	<label>비밀번호</label>
+      				  	<input type="password" class="form-control" th:field="*{password}"
+      				  	       th:classappend="${#fields.hasErrors('password') ? 'is-invalid' : ''}" />  
+      				 	<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" 
+      				 		 class="invalid-feedback"></div>      				  	
+      				  </div>
+      				  <div class="form-group mb-3">
+      				  	<label>이름</label>
+      				  	<input type="text" class="form-control" th:field="*{name}"
+      				  		   th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}" />  
+      				  	<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+      				  		 class="invalid-feedback"></div>
+      				  </div>
+      				  <div class="form-group mb-3">
+      				  	<label>이메일</label>
+      				  	<input type="text" class="form-control" th:field="*{email}"
+      				  		   th:classappend="${#fields.hasErrors('email') ? 'is-invalid' : ''}" />
+      				    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+      				    	 class="invalid-feedback"></div>  
+      				  </div>
+      				  <div class="form-group mb-3">
+      				  	<label>전화번호</label>
+      				  	<input type="text" class="form-control" th:field="*{tel}"
+      				  	       th:classappend="${#fields.hasErrors('tel') ? 'is-invalid' : ''}"/>
+      				  	<div th:if="${#fields.hasErrors('tel')}" th:errors="*{tel}"
+      				  		 class="invalid-feedback"></div>  
+      				  </div>
+      				  <div class="test-end">
+      				  	<button class="btn btn-primary btn-sm">회원가입</button>
+      				  </div>
+      			</form>
+      		</div>
+      </div>
+   </div>
+</html>
